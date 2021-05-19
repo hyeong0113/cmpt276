@@ -1,0 +1,33 @@
+body {
+    background-color: rgb(166, 25, 46);
+}
+
+table,
+td,
+th {
+    border: 1px solid black;
+}
+
+table {
+    width: 950px !important;
+    border-collapse: collapse;
+    margin-left: 25px;
+}
+
+th {
+    background-color: rgb(188, 191, 194)
+}
+
+.ourter-card {
+    width: 1500px;
+    height: 900px;
+    background-color: rgb(255, 255, 255);
+    margin-left: 200px;
+}
+
+.inner-card {
+    width: 1000px;
+    height: 600px;
+    background-color: rgb(233, 239, 241);
+    margin-left: 50px;
+}
