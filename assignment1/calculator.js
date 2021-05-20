@@ -7,21 +7,30 @@ function meanGrade() {
     var i;
     var count = 0;
 
+    var error = false;
     for (i = 0; i < myGradeElement.length; i++) {
         if ((!myGradeElement[i].value && baseGradeElement[i].value) ||
             (myGradeElement[i].value && !baseGradeElement[i].value)) {
-            console.error("You need to insert both grades in all activities!");
-            continue;
+            console.error("You need to insert both grades in each activities!");
+            error = true;
+            break;
         }
 
         if (myGradeElement[i].value && baseGradeElement[i].value) {
             totalGrade += (parseInt(myGradeElement[i].value)) / (parseInt(baseGradeElement[i].value));
             count++;
         }
-
     }
 
-    document.getElementById("result-meanGrade").innerHTML = (totalGrade / count);
+    if (!error) {
+        if (totalGrade === 0) {
+            document.getElementById("result").innerHTML = "Mean: 0";
+            return;
+        }
+        document.getElementById("result").innerHTML = "Mean: " + (totalGrade / count).toString();
+    } else {
+        document.getElementById("result").innerHTML = "You need to insert both grades in each activities";
+    }
 }
 
 function weightGrade() {
@@ -33,22 +42,42 @@ function weightGrade() {
     var weightTotal = 0;
     var i;
 
+    var meanError = false;
+    var weightError = false;
+
     for (i = 0; i < myGradeElement.length; i++) {
         if ((!myGradeElement[i].value && baseGradeElement[i].value) ||
             (myGradeElement[i].value && !baseGradeElement[i].value)) {
-            console.error("You need to insert both grades in all activities!");
-            continue;
+            console.error("You need to insert both grades in each activities!");
+            meanError = true;
+            break;
         }
 
         if (myGradeElement[i].value && baseGradeElement[i].value) {
-            if (weightGradeElement[i]) {
+            if (weightGradeElement[i].value) {
                 weightTotal += parseInt(weightGradeElement[i].value);
                 weightedTotalGrade += ((parseInt(myGradeElement[i].value)) / (parseInt(baseGradeElement[i].value)) * weightGradeElement[i].value);
             } else {
                 console.error("You need to insert weight value for calculation!");
+                weightError = true;
+                break;
             }
         }
     }
 
-    document.getElementById("result-meanGrade").innerHTML = (weightedTotalGrade / weightTotal);
+    if (meanError) {
+        document.getElementById("result").innerHTML = "You need to insert both grades in each activities";
+        return;
+    }
+
+    if (weightError) {
+        document.getElementById("result").innerHTML = "You need to insert weight value for calculation";
+        return;
+    }
+
+    if (weightTotal === 0) {
+        document.getElementById("result").innerHTML = "Weighted: 0";
+        return;
+    }
+    document.getElementById("result").innerHTML = "Weighted: " + (weightedTotalGrade / weightTotal).toString();
 }
