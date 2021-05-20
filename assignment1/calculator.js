@@ -17,7 +17,7 @@ function meanGrade() {
         }
 
         if (myGradeElement[i].value && baseGradeElement[i].value) {
-            let percent = (parseInt(myGradeElement[i].value)) / (parseInt(baseGradeElement[i].value));
+            let percent = ((parseInt(myGradeElement[i].value)) / (parseInt(baseGradeElement[i].value))).toFixed(2);
             document.getElementById(i).innerHTML = percent + "%";
             totalGrade += percent;
             count++;
@@ -29,7 +29,7 @@ function meanGrade() {
             document.getElementById("result").innerHTML = "Mean: 0";
             return;
         }
-        document.getElementById("result").innerHTML = "Mean: " + (totalGrade / count).toString();
+        document.getElementById("result").innerHTML = "Mean: " + (totalGrade / count).toFixed(2).toString();
     } else {
         document.getElementById("result").innerHTML = "You need to insert both grades in each activities";
     }
@@ -57,9 +57,9 @@ function weightGrade() {
 
         if (myGradeElement[i].value && baseGradeElement[i].value) {
             if (weightGradeElement[i].value) {
-                let percent = (parseInt(myGradeElement[i].value)) / (parseInt(baseGradeElement[i].value));
+                let percent = ((parseInt(myGradeElement[i].value)) / (parseInt(baseGradeElement[i].value))).toFixed(2);
                 document.getElementById(i).innerHTML = percent + "%";
-                weightedTotalGrade += ((parseInt(myGradeElement[i].value)) / (parseInt(baseGradeElement[i].value)) * weightGradeElement[i].value);;
+                weightedTotalGrade += ((parseInt(myGradeElement[i].value)) / (parseInt(baseGradeElement[i].value)) * weightGradeElement[i].value).toFixed(2);
                 weightTotal += parseInt(weightGradeElement[i].value);
             } else {
                 console.error("You need to insert weight value for calculation!");
@@ -83,5 +83,5 @@ function weightGrade() {
         document.getElementById("result").innerHTML = "Weighted: 0";
         return;
     }
-    document.getElementById("result").innerHTML = "Weighted: " + (weightedTotalGrade / weightTotal).toString();
+    document.getElementById("result").innerHTML = "Weighted: " + (weightedTotalGrade / weightTotal).toFixed(2).toString();
 }
