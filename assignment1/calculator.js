@@ -17,7 +17,9 @@ function meanGrade() {
         }
 
         if (myGradeElement[i].value && baseGradeElement[i].value) {
-            totalGrade += (parseInt(myGradeElement[i].value)) / (parseInt(baseGradeElement[i].value));
+            let percent = (parseInt(myGradeElement[i].value)) / (parseInt(baseGradeElement[i].value));
+            document.getElementById(i).innerHTML = percent + "%";
+            totalGrade += percent;
             count++;
         }
     }
@@ -55,8 +57,10 @@ function weightGrade() {
 
         if (myGradeElement[i].value && baseGradeElement[i].value) {
             if (weightGradeElement[i].value) {
+                let percent = (parseInt(myGradeElement[i].value)) / (parseInt(baseGradeElement[i].value));
+                document.getElementById(i).innerHTML = percent + "%";
+                weightedTotalGrade += ((parseInt(myGradeElement[i].value)) / (parseInt(baseGradeElement[i].value)) * weightGradeElement[i].value);;
                 weightTotal += parseInt(weightGradeElement[i].value);
-                weightedTotalGrade += ((parseInt(myGradeElement[i].value)) / (parseInt(baseGradeElement[i].value)) * weightGradeElement[i].value);
             } else {
                 console.error("You need to insert weight value for calculation!");
                 weightError = true;
